@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 添加以下 meta 标签 -->
+    <meta name="description" content="在线Unix时间戳转换工具，支持时间戳转日期和日期转时间戳，简单易用的在线工具">
+    <meta name="keywords" content="时间戳转换,Unix时间戳,timestamp,在线工具,日期转换">
+    <meta name="author" content="你的名字">
+    <meta name="robots" content="index,follow">
+    <!-- Open Graph 标签 -->
+    <meta property="og:title" content="Unix时间戳转换工具">
+    <meta property="og:description" content="在线Unix时间戳转换工具，支持时间戳转日期和日期转时间戳">
+    <meta property="og:type" content="website">
+    
+    <title>Unix时间戳转换工具</title>
+    <style>
+        /* 页面基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f4f6;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 90vw;
+            max-width: 500px;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+                width: 98vw;
+            }
+        }
+        h1 {
+            color: #333;
+        }
+        input, button {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .output {
+            font-size: 16px;
+            margin-top: 20px;
+            color: #333;
+        }
+        .output span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>时间戳转换工具</h1>
+        </header>
+        
+        <section>
+            <h2>时间戳转日期</h2>
+            <input type="number" id="timestamp" placeholder="请输入时间戳 (秒)">
+            <button onclick="convertToDate()">转换为日期</button>
+        </section>
+
+        <section>
+            <h2>日期转时间戳</h2>
+            <input type="datetime-local" id="datetime">
+            <button onclick="convertToTimestamp()">转换为时间戳</button>
+        </section>
+        <!-- 输出结果 -->
+        <section id="output" class="output"></section>
+        <footer>
+            <p>© 2025 时间戳转换工具 - 一个极简在线时间转换工具</p>
+        </footer>
+    </main>
+
+    <script>
+        // 时间戳转日期
+        function convertToDate() {
+            var timestamp = document.getElementById('timestamp').value;
+            if (timestamp) {
+                var date = new Date(parseInt(timestamp) * 1000); // JavaScript 默认使用毫秒
+                document.getElementById('output').innerHTML = `<span>转换结果:</span> ${date.toLocaleString()}`;
+            } else {
+                document.getElementById('output').innerHTML = `<span style="color:red;">请输入有效的时间戳!</span>`;
+            }
+        }
+
+        // 日期转时间戳
+        function convertToTimestamp() {
+            var datetime = document.getElementById('datetime').value;
+            if (datetime) {
+                var date = new Date(datetime);
+                var timestamp = Math.floor(date.getTime() / 1000); // 转换为秒级时间戳
+                document.getElementById('output').innerHTML = `<span>转换结果:</span> ${timestamp}`;
+            } else {
+                document.getElementById('output').innerHTML = `<span style="color:red;">请选择有效的日期!</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
